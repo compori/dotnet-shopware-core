@@ -1,0 +1,21 @@
+﻿using Compori.Shopware.Attributes;
+using Newtonsoft.Json;
+
+namespace Compori.Shopware.Entities
+{
+    /// <summary>
+    /// Implements the shopware product category entity.
+    /// </summary>
+    /// <seealso href="https://shopware.stoplight.io/docs/admin-api/ZG9jOjE0MzUyOTMz-entity-reference">Entity Reference on shopware.stoplight.io</seealso>
+    /// <seealso href="https://shopware.stoplight.io/docs/admin-api/c2NoOjE0MzUxMjgz-product-category">Product Category on shopware.stoplight.io</seealso>
+    /// <seealso cref="Compori.Shopware.Entities.Entity" />
+    [ShopwareEntity(name: "product_category")]
+    public class ProductCategory : Entity
+    {
+        [JsonProperty(PropertyName = "productId", Required = Required.Always)]
+        public string ProductId { get; set; }
+
+        [JsonProperty(PropertyName = "categoryId", Required = Required.Always)]
+        public string CategoryId { get; set; }
+    }
+}
