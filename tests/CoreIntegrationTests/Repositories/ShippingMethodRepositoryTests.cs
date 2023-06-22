@@ -17,7 +17,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestReadAsync()
+        public async Task TestRead()
         {
             this.Setup();
             try
@@ -32,7 +32,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestTaggingAsync()
+        public async Task TestTagging()
         {
             this.Setup();
             Tag tag1 = null;

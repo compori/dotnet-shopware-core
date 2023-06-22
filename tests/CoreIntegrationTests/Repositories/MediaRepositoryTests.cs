@@ -21,7 +21,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestReadAsync()
+        public async Task TestRead()
         {
             this.Setup();
             try
@@ -36,7 +36,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestUploadImageAsync()
+        public async Task TestUploadImage()
         {
             this.Setup();
             var id = "";
@@ -54,11 +54,11 @@ namespace Compori.Shopware.Repositories
                 var media = await this.Repository.Read(id);
                 Assert.NotNull(media);
                 var extension = fileInfo.Extension.TrimStart('.');
-                await this.Repository.UploadAsync(id, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
+                await this.Repository.Upload(id, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
                 media = await this.Repository.Read(id);
                 Assert.NotNull(media);
                 media.FileName = fileName;
-                await this.Repository.RenameAsync(id, "test-bild");
+                await this.Repository.Rename(id, "test-bild");
                 media = await this.Repository.Read(id);
                 Assert.NotNull(media);
             }
@@ -104,8 +104,8 @@ namespace Compori.Shopware.Repositories
                 Assert.NotNull(media2);
 
                 var extension = fileInfo.Extension.TrimStart('.');
-                await this.Repository.UploadAsync(id1, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
-                var ex = await Assert.ThrowsAsync<ShopwareException>(() => this.Repository.UploadAsync(id2, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension));
+                await this.Repository.Upload(id1, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
+                var ex = await Assert.ThrowsAsync<ShopwareException>(() => this.Repository.Upload(id2, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension));
                 Assert.Equal("CONTENT__MEDIA_DUPLICATED_FILE_NAME", ex.Errors.First().Code);
             }
             //catch (Exception ex)
@@ -126,7 +126,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestUploadPdfAsync()
+        public async Task TestUploadPdf()
         {
             this.Setup();
             var id = "";
@@ -144,11 +144,11 @@ namespace Compori.Shopware.Repositories
                 var media = await this.Repository.Read(id);
                 Assert.NotNull(media);
                 var extension = fileInfo.Extension.TrimStart('.');
-                await this.Repository.UploadAsync(id, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test image", extension);
+                await this.Repository.Upload(id, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test image", extension);
                 media = await this.Repository.Read(id);
                 Assert.NotNull(media);
                 media.FileName = fileName;
-                await this.Repository.RenameAsync(id, "test-text");
+                await this.Repository.Rename(id, "test-text");
                 media = await this.Repository.Read(id);
                 Assert.NotNull(media);
             }

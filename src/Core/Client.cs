@@ -328,7 +328,7 @@ namespace Compori.Shopware
         /// </summary>
         /// <param name="cancelToken">The cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>AccessToken.</returns>
-        public async Task<AccessToken> CreateAccessTokenAsync(CancellationToken cancellationToken = default)
+        public async Task<AccessToken> CreateAccessToken(CancellationToken cancellationToken = default)
         {
             using var client = this.RestClientFactory.Create(this.Settings);
 
@@ -376,7 +376,7 @@ namespace Compori.Shopware
             // Erstelle einen neuen Access Token
             Log.Trace("The current access token is invalid. Creating a new access token.");
 
-            this._accessToken = await this.CreateAccessTokenAsync(cancellationToken).ConfigureAwait(false)
+            this._accessToken = await this.CreateAccessToken(cancellationToken).ConfigureAwait(false)
                 ?? throw new ShopwareException("Der angeforderte Access Token ist leer.");
 
             this._tokenExpiration = DateTime.UtcNow.AddSeconds(this._accessToken.ExpiresIn - 60);

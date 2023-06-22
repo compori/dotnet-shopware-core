@@ -269,7 +269,7 @@ namespace Compori.Shopware
                 MediaFolderId = "bd98aa186730462db38628427835dacb", // Test Folder
             });
             var extension = fileInfo.Extension.TrimStart('.');
-            await repository.UploadAsync(id, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
+            await repository.Upload(id, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
             var media = await repository.Read(id);
             return media;
         }

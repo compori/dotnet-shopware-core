@@ -16,7 +16,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestReadAsync()
+        public async Task TestRead()
         {
             this.Setup();
             try
@@ -31,7 +31,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestCreateReadUpdateDeleteAsync()
+        public async Task TestCreateReadUpdateDelete()
         {
             this.Setup();
             string id = null;

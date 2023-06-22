@@ -257,7 +257,7 @@ namespace Compori.Shopware.Repositories
 
 
         [Fact()]
-        public async Task TestProductMediaAsync()
+        public async Task TestProductMedia()
         {
             this.Setup();
             Entities.Product product = null;

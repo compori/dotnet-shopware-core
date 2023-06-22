@@ -52,7 +52,7 @@ namespace Compori.Shopware.Repositories
 
 
         [Fact()]
-        public async Task TestReadAsync()
+        public async Task TestRead()
         {
             this.Setup();
             try

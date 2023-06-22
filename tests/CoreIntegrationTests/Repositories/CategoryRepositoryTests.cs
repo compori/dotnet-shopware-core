@@ -20,7 +20,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestCreateAsync()
+        public async Task TestCreate()
         {
             this.Setup();
             var id = "";
@@ -59,7 +59,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestUpdateAsync()
+        public async Task TestUpdate()
         {
             this.Setup();
             var id = "";
@@ -120,7 +120,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestReadAllAsync()
+        public async Task TestReadAll()
         {
             this.Setup();
             try
@@ -137,7 +137,7 @@ namespace Compori.Shopware.Repositories
         }
 
         [Fact()]
-        public async Task TestReadAllIdsAsync()
+        public async Task TestReadAllIds()
         {
             this.Setup();
             try

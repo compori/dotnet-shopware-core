@@ -21,10 +21,10 @@ namespace Compori.Shopware.Repositories
         /// <param name="fileExtension">The file extension.</param>
         /// <param name="cancellationToken">The cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>A Task&lt;System.String&gt; representing the asynchronous operation.</returns>
-        public async Task<string> CreateAsync(TEntity media, byte[] data, string mimeType, string fileName, string fileExtension, CancellationToken cancellationToken = default)
+        public async Task<string> Create(TEntity media, byte[] data, string mimeType, string fileName, string fileExtension, CancellationToken cancellationToken = default)
         {
             var id = await this.Create(media, cancellationToken).ConfigureAwait(false);
-            await this.UploadAsync(id, data, mimeType, fileExtension, fileName, cancellationToken).ConfigureAwait(false);
+            await this.Upload(id, data, mimeType, fileName, fileExtension, cancellationToken).ConfigureAwait(false);
             return id;
         }
 
@@ -36,7 +36,7 @@ namespace Compori.Shopware.Repositories
         /// <param name="mimeType">Type of the MIME.</param>
         /// <param name="fileExtension">The file extension.</param>
         /// <param name="cancellationToken">The cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async Task UploadAsync(string id, byte[] data, string mimeType, string fileName, string fileExtension, CancellationToken cancellationToken = default)
+        public async Task Upload(string id, byte[] data, string mimeType, string fileName, string fileExtension, CancellationToken cancellationToken = default)
         {
             Guard.AssertArgumentIsNotNullOrWhiteSpace(id, nameof(id));
             Guard.AssertArgumentIsNotNull(data, nameof(data));
@@ -68,7 +68,7 @@ namespace Compori.Shopware.Repositories
         /// <param name="fileName">Name of the file.</param>
         /// <param name="cancellationToken">The cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
-        public async Task RenameAsync(string id, string fileName, CancellationToken cancellationToken = default)
+        public async Task Rename(string id, string fileName, CancellationToken cancellationToken = default)
         {
             Guard.AssertArgumentIsNotNullOrWhiteSpace(id, nameof(id));
             Guard.AssertArgumentIsNotNullOrWhiteSpace(fileName, nameof(fileName));

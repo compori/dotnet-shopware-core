@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
 namespace Compori.Shopware.Services
@@ -26,7 +25,7 @@ namespace Compori.Shopware.Services
         /// </summary>
         /// <param name="cancellationToken">The cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>A Task&lt;Version&gt; representing the asynchronous operation.</returns>
-        public async Task<Types.Version> GetVersionAsync(CancellationToken cancellationToken = default)
+        public async Task<Types.Version> GetVersion(CancellationToken cancellationToken = default)
         {
             return await this.Client.Get<Types.Version>("/_info/version", cancellationToken).ConfigureAwait(false);
         }
