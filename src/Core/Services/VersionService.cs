@@ -6,15 +6,15 @@ namespace Compori.Shopware.Services
     public class VersionService
     {
         /// <summary>
-        /// Liefert den Shopware Client.
+        /// Gets the shopware rest client.
         /// </summary>
-        /// <value>The client.</value>
+        /// <value>The shopware rest client.</value>
         protected Client Client { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VersionService"/> class.
         /// </summary>
-        /// <param name="client">The client.</param>
+        /// <param name="client">The shopware rest client.</param>
         public VersionService(Client client)
         {
             this.Client = client;

@@ -88,7 +88,7 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "doubleOptInRegistration", NullValueHandling = NullValueHandling.Ignore)]
         public bool DoubleOptInRegistration { get; set; }
-        
+
         [JsonProperty(PropertyName = "doubleOptInEmailSentDate", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? DoubleOptInEmailSentDate { get; set; }
 
@@ -97,7 +97,7 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "hash", NullValueHandling = NullValueHandling.Ignore)]
         public string Hash { get; set; }
-        
+
         [JsonProperty(PropertyName = "guest", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Guest { get; set; }
 
@@ -106,7 +106,7 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "lastLogin", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? LastLogin { get; set; }
-        
+
         [JsonProperty(PropertyName = "newsletter", NullValueHandling = NullValueHandling.Ignore)]
         public bool Newsletter { get; set; }
 
@@ -118,5 +118,31 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "remoteAddress", NullValueHandling = NullValueHandling.Ignore)]
         public string RemoteAddress { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            var result = base.ToString();
+            if (!string.IsNullOrWhiteSpace(this.CustomerNumber))
+            {
+                result = this.CustomerNumber;
+                if (!string.IsNullOrWhiteSpace(this.Lastname))
+                {
+                    result += " - " + this.Lastname;
+                }
+                if (!string.IsNullOrWhiteSpace(this.Firstname))
+                {
+                    result += ", " + this.Firstname;
+                }
+                if (!string.IsNullOrWhiteSpace(this.Id))
+                {
+                    result += " Id: " + this.Id;
+                }
+            }
+            return result;
+        }
     }
 }

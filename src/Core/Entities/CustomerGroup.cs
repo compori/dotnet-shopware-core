@@ -32,5 +32,23 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "registrationTitle", NullValueHandling = NullValueHandling.Ignore)]
         public string RegistrationTitle { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            var result = base.ToString();
+            if (!string.IsNullOrWhiteSpace(this.Name))
+            {
+                result = this.Name;
+                if (!string.IsNullOrWhiteSpace(this.Id))
+                {
+                    result += " Id: " + this.Id;
+                }
+            }
+            return result;
+        }
     }
 }

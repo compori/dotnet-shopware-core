@@ -1,5 +1,4 @@
 ﻿using Compori.Shopware.Factories;
-using Compori.Shopware.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,6 +53,128 @@ namespace Compori.Shopware
                 this.client = new Client(settingsFactory, restClientFactory);
             }
             return this.client;
+        }
+
+        /// <summary>
+        /// Creates the country repository.
+        /// </summary>
+        /// <returns>Repositories.CountryRepository.</returns>
+        public Repositories.CountryRepository CreateCountryRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.CountryRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the country state repository.
+        /// </summary>
+        /// <returns>Repositories.CountryStateRepository.</returns>
+        public Repositories.CountryStateRepository CreateCountryStateRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.CountryStateRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the currency repository.
+        /// </summary>
+        /// <returns>Repositories.CurrencyRepository.</returns>
+        public Repositories.CurrencyRepository CreateCurrencyRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.CurrencyRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the customer repository.
+        /// </summary>
+        /// <returns>Repositories.CustomerRepository.</returns>
+        public Repositories.CustomerRepository CreateCustomerRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.CustomerRepository(client);
+        }
+
+
+        /// <summary>
+        /// Creates the customer group repository.
+        /// </summary>
+        /// <returns>Repositories.CustomerGroupRepository.</returns>
+        public Repositories.CustomerGroupRepository CreateCustomerGroupRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.CustomerGroupRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the order repository.
+        /// </summary>
+        /// <returns>Repositories.OrderRepository.</returns>
+        public Repositories.OrderRepository CreateOrderRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.OrderRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the order line item repository.
+        /// </summary>
+        /// <returns>Repositories.OrderLineItemRepository.</returns>
+        public Repositories.OrderLineItemRepository CreateOrderLineItemRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.OrderLineItemRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the payment method repository.
+        /// </summary>
+        /// <returns>Repositories.PaymentMethodRepository.</returns>
+        public Repositories.PaymentMethodRepository CreatePaymentMethodRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.PaymentMethodRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the state machine repository.
+        /// </summary>
+        /// <returns>Repositories.StateMachineRepository.</returns>
+        public Repositories.StateMachineRepository CreateStateMachineRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.StateMachineRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the state machine state repository.
+        /// </summary>
+        /// <returns>Repositories.StateMachineStateRepository.</returns>
+        public Repositories.StateMachineStateRepository CreateStateMachineStateRepository()
+        {
+            var client = this.CreateClient();
+            return new Repositories.StateMachineStateRepository(client);
+        }
+
+        /// <summary>
+        /// Creates the order reader.
+        /// </summary>
+        /// <returns>Helpers.OrderReader.</returns>
+        public Helpers.OrderReader CreateOrderReader()
+        {
+            return new Helpers.OrderReader(
+                this.CreateCountryRepository(),
+                this.CreateCountryStateRepository(),
+                this.CreateCurrencyRepository(), 
+                this.CreateCustomerRepository(),
+                this.CreateCustomerGroupRepository(),
+                this.CreateOrderRepository(),
+                this.CreateOrderLineItemRepository(),
+                this.CreatePaymentMethodRepository(),
+                this.CreateStateMachineRepository(),
+                this.CreateStateMachineStateRepository(),
+                this.CreateShippingMethodRepository()
+            );
         }
 
         /// <summary>
@@ -261,7 +382,7 @@ namespace Compori.Shopware
 
             var fileName = "test-image.jpg";
             var fileInfo = new FileInfo(Path.Combine("data", fileName));
-            var mimeType = MimeTypeHelper.GetMimeTypeByFileName(fileName);
+            var mimeType = Helpers.MimeTypeHelper.GetMimeTypeByFileName(fileName);
             var id = await repository.Create(new Entities.Media
             {
                 Title = "My Plants",
@@ -269,7 +390,7 @@ namespace Compori.Shopware
                 MediaFolderId = "bd98aa186730462db38628427835dacb", // Test Folder
             });
             var extension = fileInfo.Extension.TrimStart('.');
-            await repository.Upload(id, File.ReadAllBytes(fileInfo.FullName), MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
+            await repository.Upload(id, File.ReadAllBytes(fileInfo.FullName), Helpers.MimeTypeHelper.GetMimeTypeByExtension(extension), "test picture", extension);
             var media = await repository.Read(id);
             return media;
         }

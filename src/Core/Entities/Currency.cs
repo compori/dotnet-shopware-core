@@ -32,5 +32,27 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "isSystemDefault", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IsSystemDefault { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            var result = base.ToString();
+            if (!string.IsNullOrWhiteSpace(this.ISOCode))
+            {
+                result = this.ISOCode;
+                if (!string.IsNullOrWhiteSpace(this.Name))
+                {
+                    result += " (" + this.Name + ")";
+                }
+                if (!string.IsNullOrWhiteSpace(this.Id))
+                {
+                    result += " Id: " + this.Id;
+                }
+            }
+            return result;
+        }
     }
 }

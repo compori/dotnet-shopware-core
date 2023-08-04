@@ -21,7 +21,7 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "salutationId", NullValueHandling = NullValueHandling.Ignore)]
         public string SalutationId { get; set; }
-        
+
         [JsonProperty(PropertyName = "salutation", NullValueHandling = NullValueHandling.Ignore)]
         public Salutation Salutation { get; set; }
 
@@ -51,5 +51,31 @@ namespace Compori.Shopware.Entities
 
         [JsonProperty(PropertyName = "vatIds", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> VatIds { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            var result = base.ToString();
+            if (!string.IsNullOrWhiteSpace(this.CustomerNumber))
+            {
+                result = this.CustomerNumber;
+                if (!string.IsNullOrWhiteSpace(this.Lastname))
+                {
+                    result += " - " + this.Lastname;
+                }
+                if (!string.IsNullOrWhiteSpace(this.Firstname))
+                {
+                    result += ", " + this.Firstname;
+                }
+                if (!string.IsNullOrWhiteSpace(this.Id))
+                {
+                    result += " Id: " + this.Id;
+                }
+            }
+            return result;
+        }
     }
 }
