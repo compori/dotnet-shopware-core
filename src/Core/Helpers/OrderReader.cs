@@ -496,7 +496,7 @@ namespace Compori.Shopware.Helpers
                 return new List<string>();
             }
 
-            var limit = 4;
+            var limit = 100;
             var result = await this.OrderRepository.ReadAllIds(new Search
             {
                 Page = 1,
@@ -521,7 +521,7 @@ namespace Compori.Shopware.Helpers
         /// <returns>List&lt;System.String&gt;.</returns>
         private async Task<List<string>> ReadOrderIdsByOrderNumber(string orderNumber)
         {
-            var limit = 4;
+            var limit = 100;
             var result = await this.OrderRepository.ReadAllIds(new Search
             {
                 Page = 1,
