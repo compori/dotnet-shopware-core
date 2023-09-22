@@ -23,7 +23,7 @@ namespace Compori.Shopware.Entities
         where TUnit : Unit
         where TTaggableWith : ProductTag
     {
-        [JsonProperty(PropertyName = "parentId", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "parentId", NullValueHandling = NullValueHandling.Include)]
         public string ParentId { get; set; }
 
         [JsonProperty(PropertyName = "productNumber", NullValueHandling = NullValueHandling.Ignore)]
