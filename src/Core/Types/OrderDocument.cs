@@ -9,5 +9,8 @@ namespace Compori.Shopware.Types
 
         [JsonProperty(PropertyName = "documentDeepLink")]
         public string DocumentDeepLink { get; set; }
+        
+        [JsonProperty(PropertyName = "documentMediaId")]
+        public string DocumentMediaId { get; set; }
     }
 }
