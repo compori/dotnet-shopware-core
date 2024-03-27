@@ -38,6 +38,9 @@
     <None Update="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="testing-shop-2.ignore.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="testing-shop.ignore.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

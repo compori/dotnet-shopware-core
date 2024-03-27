@@ -39,6 +39,6 @@ namespace Compori.Shopware.Entities
         /// </summary>
         /// <value>Die Liste mit Custom Fields.</value>
         [JsonProperty(PropertyName = "customFields", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, object> CustomFields { get; set; }
+        public object CustomFields { get; set; }
     }
 }

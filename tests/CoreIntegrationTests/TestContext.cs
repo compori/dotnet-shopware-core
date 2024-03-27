@@ -23,11 +23,20 @@ namespace Compori.Shopware
         /// Creates the settings factory.
         /// </summary>
         /// <returns>ISettingsFactory.</returns>
-        public ISettingsFactory CreateSettingsFactory()
+        public ISettingsFactory CreateSettingsFactory(string configFile)
         {
             var factory = new SettingsFactory();
-            factory.ReadFromJsonFile("testing-shop.ignore.json");
+            factory.ReadFromJsonFile(configFile);
             return factory;
+        }
+
+        /// <summary>
+        /// Creates the settings factory.
+        /// </summary>
+        /// <returns>ISettingsFactory.</returns>
+        public ISettingsFactory CreateSettingsFactory()
+        {
+            return this.CreateSettingsFactory("testing-shop.ignore.json");
         }
 
         /// <summary>
@@ -38,6 +47,18 @@ namespace Compori.Shopware
         {
             var factory = this.CreateSettingsFactory();
             return factory.Create();
+        }
+
+        /// <summary>
+        /// Creates the client.
+        /// </summary>
+        /// <param name="configFile">The configuration file.</param>
+        /// <returns>Client.</returns>
+        public Client CreateClient(string configFile)
+        {
+            var settingsFactory = this.CreateSettingsFactory(configFile);
+            var restClientFactory = new RestClientFactory();
+            return new Client(settingsFactory, restClientFactory);
         }
 
         /// <summary>
@@ -165,7 +186,7 @@ namespace Compori.Shopware
             return new Helpers.OrderReader(
                 this.CreateCountryRepository(),
                 this.CreateCountryStateRepository(),
-                this.CreateCurrencyRepository(), 
+                this.CreateCurrencyRepository(),
                 this.CreateCustomerRepository(),
                 this.CreateCustomerGroupRepository(),
                 this.CreateOrderRepository(),
